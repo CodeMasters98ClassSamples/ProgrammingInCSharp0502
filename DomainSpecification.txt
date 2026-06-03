@@ -1,0 +1,101 @@
+﻿CRUD => Create , Update , Read, Delete
+
+Student Question:
+1- Delete Type ?
+2- Enum Usage ?
+
+Class:
+	Container For method , Data
+	Custom Data Type
+	Template
+
+لیستی از کاربران که داشجوهای ما هستند
+هر دانشجو دارای نام و نام خانوادگی و اطلاعات ارتباطی و کدملی و شماره دانشجویی و شماره مراه است.
+هر دانشجو میتواند در کلاس های مجموعه شرکت کند
+روش شرکت در کلاس حضوری یا آنلاین است.
+هر دوره دارای زمان آغاز و هزینه و مدت زمان دوره و نوع دوره و توع دسته بندی دوره است
+دسته بندی های ما میتواند از طریق ادمین سامانه تعیین شود.
+
+Active Role:
+	Admin
+
+Output Project:
+	Windows Application
+
+Entity
+	Student -> class
+		- Id -> int -> auto generated
+		- FirstName -> strign
+		- LastName -> strign
+		- Phone -> strign
+		- NationalCode -> strign
+		- Address -> class
+		- Code -> string -> auto generated
+		+ RegisterUser
+		
+	Address
+		- Id -> int -> auto generated
+		- Student -> class
+		- Title -> string
+		- Detail -> string
+		- PostalCode -> string
+	
+	Course
+		- Id -> int -> auto generated
+		- Title -> string
+		- Description -> string
+		- Price -> decimal
+		- Hour -> int
+		- OnSiteSize -> int
+		- RemoteSize -> int
+		+ Create
+		+ Update
+		+ Delete
+		+ Read
+
+	StudentCourseHistory
+		- Id -> int -> auto generated
+		- Student -> class
+		- CourseHistory -> class
+		- PayementType -> enum
+		- RegisterDate -> DateTime
+		+ RegisterCourse
+
+	CourseHistory
+		- Id -> int -> auto generated
+		- Course -> class
+		- Code -> string -> auto generated
+		- Price -> decimal
+		- StartAt -> DateTime
+		- EndEnd -> DateTime?
+		- Master -> class
+		- Type -> enum
+		+ Read
+		+ FinalizeCourse
+		+ StartCourse
+		+ Archive
+
+	Master
+		- Id -> int -> auto generated
+		- FirstName -> string
+		- LastName -> string
+		- Phone -> string
+		- NationalCode -> string
+		- LastDocument -> string
+		- Address -> class
+		- CardInfo -> string
+		+ Update
+		+ SignAgreement
+		+ Read
+
+	Category
+		- Id -> int -> auto generated
+		- Title -> string
+		- StartAt -> DateTime
+		- Description -> string
+		- List Course -> class
+		+ Update
+		+ Read
+		+ Delete
+		+ Create
+		+ AssignCourse

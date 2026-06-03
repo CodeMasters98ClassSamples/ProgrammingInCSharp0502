@@ -1,0 +1,46 @@
+﻿{
+  "students": [
+    {
+      "Id": 1,
+      "firstName": "Parham",
+      "lastName": "Darvishi",
+      "Code": "alksdsadlk",
+      "Phone": "09129564205",
+      "NationalCode": "0000000000",
+      "Address": {
+        "Id": 1,
+        "Title": "Kharej",
+        "Detail": "Kheyli Kharej",
+        "PostalCode": "1"
+      }
+    },
+    {
+      "Id": 1,
+      "firstName": "Ali",
+      "lastName": "Ali",
+      "Code": "kjfgbkjdfbjksdjb",
+      "Phone": "09129564206",
+      "NationalCode": "0000000001",
+      "Address": {
+        "Id": 2,
+        "Title": "Kharej2",
+        "Detail": "Kheyli Kharej2",
+        "PostalCode": "2"
+      }
+    },
+    {
+      "Id": 1,
+      "firstName": "mohammadReza",
+      "lastName": "Karami",
+      "Code": "kjfgbkjdfbjksdjbjakshd",
+      "Phone": "09129564207",
+      "NationalCode": "0000000007",
+      "Address": {
+        "Id": 3,
+        "Title": "Iran",
+        "Detail": "Iran",
+        "PostalCode": "3"
+      }
+    }
+  ]
+}
