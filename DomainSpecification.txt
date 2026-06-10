@@ -99,3 +99,5 @@ Entity
 		+ Delete
 		+ Create
 		+ AssignCourse
+
+Dto => Data Transfer Object

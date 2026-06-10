@@ -1,7 +1,11 @@
-﻿namespace ProgrammingInCSharp0502.MyWindowsformApp.Models;
+﻿using System.Diagnostics;
+
+namespace ProgrammingInCSharp0502.MyWindowsformApp.Models;
 
 
 //rich domain VS anemic domain
+
+[DebuggerDisplay("Student {Id}: {FirstName} {LastName} with Code= {Code} .")]
 public class Student
 {
     public Student() { }

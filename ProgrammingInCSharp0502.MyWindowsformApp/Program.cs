@@ -10,14 +10,10 @@ namespace ProgrammingInCSharp0502.MyWindowsformApp
         [STAThread]
         static void Main()
         {
-            int x = 0;
-            //object , instance , شی , نمونه
-            Student student = new Student();
-            
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new Form1());
+            Application.Run(new LoginForm());
         }
     }
 }
