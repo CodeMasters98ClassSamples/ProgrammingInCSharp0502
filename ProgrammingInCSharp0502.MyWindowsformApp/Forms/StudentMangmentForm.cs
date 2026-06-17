@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using ProgrammingInCSharp0502.MyWindowsformApp.Businesses;
 using ProgrammingInCSharp0502.MyWindowsformApp.Forms;
 using ProgrammingInCSharp0502.MyWindowsformApp.Models;
 using System;
@@ -20,30 +21,16 @@ namespace ProgrammingInCSharp0502.MyWindowsformApp
 
         List<Student> students = new List<Student>();
         Student targetStudent = null;
+        StudentBusiness studentBusiness = new();
 
         public StudentMangmentForm()
         {
             InitializeComponent();
 
-            //0- Login Form
-            //1- Create File 
-            //2- Install Pakcage
-            //3- Create Class for Modeling
-            //4- Map Object
-            //5- Check input User
+            students = studentBusiness.GetStudents();
 
-            string jsonDataStr = string.Empty;
-            string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Data", "StudentsData.json");
-            if (File.Exists(filePath))
-            {
-                jsonDataStr = File.ReadAllText(filePath);
-                if (!string.IsNullOrEmpty(jsonDataStr))
-                {
-                    students = JsonConvert.DeserializeObject<List<Student>>(jsonDataStr);
-                    RefreshForm();
-                    ResetForm();
-                }
-            }
+            RefreshForm();
+            ResetForm();
         }
 
         private void registerStudentButton_Click(object sender, EventArgs e)
