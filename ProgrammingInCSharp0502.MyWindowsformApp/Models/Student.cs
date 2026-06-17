@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using Newtonsoft.Json;
+using System.Diagnostics;
 
 namespace ProgrammingInCSharp0502.MyWindowsformApp.Models;
 
@@ -34,10 +35,20 @@ public class Student
 
     //auto generated
     public int Id { get; set; }
+
+    [JsonProperty]
     public string FirstName { get; private set; }
+
+    [JsonProperty]
     public string LastName { get; private set; }
+
+    [JsonProperty]
     public string Phone { get; private set; }
     public string NationalCode { get; private set; }
+    public string FullName { get {
+            return FirstName + " " + LastName;    
+        } 
+    }
 
     //auto generated
     public string Code { get; set; }    

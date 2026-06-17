@@ -1,11 +1,12 @@
 ﻿using Newtonsoft.Json;
+using ProgrammingInCSharp0502.MyWindowsformApp.Forms;
 using ProgrammingInCSharp0502.MyWindowsformApp.Models;
 using System;
 using System.Windows.Forms;
 
 namespace ProgrammingInCSharp0502.MyWindowsformApp
 {
-    public partial class Form1 : Form
+    public partial class StudentMangmentForm : Form
     {
         //Global Vaibale
         // Hold Data => File (csv, json, xml , txt, ..) , Database (SQL , NoSQL) => Sql server, MySql , Mongo
@@ -18,9 +19,9 @@ namespace ProgrammingInCSharp0502.MyWindowsformApp
         //Pattern -> Resuing Code
 
         List<Student> students = new List<Student>();
-        Student targetStudent = new Student();
-        
-        public Form1()
+        Student targetStudent = null;
+
+        public StudentMangmentForm()
         {
             InitializeComponent();
 
@@ -79,14 +80,14 @@ namespace ProgrammingInCSharp0502.MyWindowsformApp
                 // Access the ID from the row's data
                 var id = int.Parse(row.Cells["Id"].Value.ToString() ?? "0");
                 var code = row.Cells["Code"].Value;
-                
+
                 Clipboard.SetDataObject(code);
 
                 //targetStudent = students
 
                 for (int i = 0; i < students.Count; i++)
                 {
-                    if (students[i].Id == id)
+                    if (students[i].Code == code)
                     {
                         targetStudent = students[i];
                         firstNameTextBox.Text = targetStudent.FirstName;
@@ -123,6 +124,19 @@ namespace ProgrammingInCSharp0502.MyWindowsformApp
             targetStudent.UpdateFirstName(firstNameTextBox.Text);
             targetStudent.UpdateLastName(lastNameTextBox.Text);
             RefreshForm();
+        }
+
+        private void registerOnCoursebutton_Click(object sender, EventArgs e)
+        {
+            if (targetStudent is null)
+            {
+                MessageBox.Show("لطفا ابتدا دانشجویی را انتخاب نمایید.");
+                return;
+            }
+
+            RegisterStudentOnCourseForm regForm = new(fullname: targetStudent.FullName ,code: targetStudent.Code);
+            regForm.Show();
+
         }
     }
 }

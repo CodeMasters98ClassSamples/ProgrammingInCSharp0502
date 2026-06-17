@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using ProgrammingInCSharp0502.MyWindowsformApp.Dtos;
+using ProgrammingInCSharp0502.MyWindowsformApp.Forms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -43,14 +44,15 @@ namespace ProgrammingInCSharp0502.MyWindowsformApp
                 return;
             }
 
+            //Loop over
             for (int i = 0; i < logins.Count; i++)
                 if (logins[i].Username.Trim().ToLower() == username.Trim().ToLower() && logins[i].Password.Trim() == password.Trim())
                     successLogin = true;
 
             if (successLogin)
             {
-                Form1 form1 = new Form1();
-                form1.ShowDialog();
+                LayoutForm layout = new LayoutForm();
+                layout.ShowDialog();
                 return;
             }
             else

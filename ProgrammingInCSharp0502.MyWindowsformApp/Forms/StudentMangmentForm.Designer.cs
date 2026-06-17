@@ -1,6 +1,6 @@
 ﻿namespace ProgrammingInCSharp0502.MyWindowsformApp
 {
-    partial class Form1
+    partial class StudentMangmentForm
     {
         /// <summary>
         ///  Required designer variable.
@@ -39,6 +39,7 @@
             lastNameTextBox = new TextBox();
             studentDataGridView = new DataGridView();
             updateIdentityButton = new Button();
+            registerOnCoursebutton = new Button();
             ((System.ComponentModel.ISupportInitialize)studentDataGridView).BeginInit();
             SuspendLayout();
             // 
@@ -137,11 +138,22 @@
             updateIdentityButton.UseVisualStyleBackColor = true;
             updateIdentityButton.Click += updateIdentityButton_Click;
             // 
-            // Form1
+            // registerOnCoursebutton
+            // 
+            registerOnCoursebutton.Location = new Point(40, 255);
+            registerOnCoursebutton.Name = "registerOnCoursebutton";
+            registerOnCoursebutton.Size = new Size(231, 39);
+            registerOnCoursebutton.TabIndex = 11;
+            registerOnCoursebutton.Text = "ثبت نام دوره";
+            registerOnCoursebutton.UseVisualStyleBackColor = true;
+            registerOnCoursebutton.Click += registerOnCoursebutton_Click;
+            // 
+            // StudentMangmentForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(registerOnCoursebutton);
             Controls.Add(updateIdentityButton);
             Controls.Add(studentDataGridView);
             Controls.Add(label4);
@@ -153,7 +165,7 @@
             Controls.Add(registerStudentButton);
             Controls.Add(label1);
             Controls.Add(firstNameTextBox);
-            Name = "Form1";
+            Name = "StudentMangmentForm";
             Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)studentDataGridView).EndInit();
             ResumeLayout(false);
@@ -173,5 +185,6 @@
         private TextBox lastNameTextBox;
         private DataGridView studentDataGridView;
         private Button updateIdentityButton;
+        private Button registerOnCoursebutton;
     }
 }

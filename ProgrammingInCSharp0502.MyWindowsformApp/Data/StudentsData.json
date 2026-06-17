@@ -1,8 +1,8 @@
 ﻿[
   {
     "Id": 1,
-    "firstName": "Parham",
-    "lastName": "Darvishi",
+    "FirstName": "Parham",
+    "LastName": "Darvishi",
     "Code": "alksdsadlk",
     "Phone": "09129564205",
     "NationalCode": "0000000000",
@@ -15,8 +15,8 @@
   },
   {
     "Id": 1,
-    "firstName": "Ali",
-    "lastName": "Ali",
+    "FirstName": "Ali",
+    "LastName": "Ali",
     "Code": "kjfgbkjdfbjksdjb",
     "Phone": "09129564206",
     "NationalCode": "0000000001",
@@ -29,8 +29,8 @@
   },
   {
     "Id": 1,
-    "firstName": "mohammadReza",
-    "lastName": "Karami",
+    "FirstName": "mohammadReza",
+    "LastName": "Karami",
     "Code": "kjfgbkjdfbjksdjbjakshd",
     "Phone": "09129564207",
     "NationalCode": "0000000007",
