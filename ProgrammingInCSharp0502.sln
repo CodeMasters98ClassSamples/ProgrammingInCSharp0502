@@ -10,6 +10,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{43A36766-4F50-4D80-B917-BD0A6A201F30}"
 	ProjectSection(SolutionItems) = preProject
 		DomainSpecification.txt = DomainSpecification.txt
+		..\..\..\Desktop\Ntier.PNG = ..\..\..\Desktop\Ntier.PNG
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProgrammingInCSharp0502.MyAPIApp", "ProgrammingInCSharp0502.MyAPIApp\ProgrammingInCSharp0502.MyAPIApp.csproj", "{81CCD07C-CFFB-47C4-A37F-BC812D987E94}"
