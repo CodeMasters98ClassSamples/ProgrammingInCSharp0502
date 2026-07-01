@@ -1,5 +1,5 @@
 ﻿
-namespace ProgrammingInCSharp0502.MyWindowsformApp.Models;
+namespace ProgrammingInCSharp0502.Domain;
 
 public class Category
 {

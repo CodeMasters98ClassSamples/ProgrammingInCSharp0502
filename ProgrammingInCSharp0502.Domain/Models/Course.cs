@@ -1,5 +1,4 @@
-﻿namespace ProgrammingInCSharp0502.MyWindowsformApp.Models;
-
+﻿namespace ProgrammingInCSharp0502.Domain;
 public class Course
 {
     public int Id { get; set; }

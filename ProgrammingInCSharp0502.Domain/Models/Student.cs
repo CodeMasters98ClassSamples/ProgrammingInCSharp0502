@@ -1,8 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System.Diagnostics;
 
-namespace ProgrammingInCSharp0502.MyWindowsformApp.Models;
-
+namespace ProgrammingInCSharp0502.Domain;
 
 //rich domain VS anemic domain
 

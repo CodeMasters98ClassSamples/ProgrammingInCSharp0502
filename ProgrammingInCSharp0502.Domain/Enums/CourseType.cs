@@ -1,4 +1,4 @@
-﻿namespace ProgrammingInCSharp0502.MyWindowsformApp.Enums;
+﻿namespace ProgrammingInCSharp0502.Domain;
 
 public enum CourseType
 {

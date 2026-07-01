@@ -1,9 +1,6 @@
-﻿using Newtonsoft.Json;
-using ProgrammingInCSharp0502.MyWindowsformApp.Businesses;
+﻿using ProgrammingInCSharp0502.Business;
+using ProgrammingInCSharp0502.Domain;
 using ProgrammingInCSharp0502.MyWindowsformApp.Forms;
-using ProgrammingInCSharp0502.MyWindowsformApp.Models;
-using System;
-using System.Windows.Forms;
 
 namespace ProgrammingInCSharp0502.MyWindowsformApp
 {

@@ -101,3 +101,25 @@ Entity
 		+ AssignCourse
 
 Dto => Data Transfer Object
+
+JSON : Hold , Trasnfer Data
+
+Project Type:
+	API -> JSON
+	Razor Page -> csharp + web design
+	Windows Application
+
+Roles:
+	Software Developer
+	Software Architecture
+
+Presenation
+
+Data Gad
+
+Visualization
+	Data Eng
+	SRE
+
+Forms:
+	Presentation

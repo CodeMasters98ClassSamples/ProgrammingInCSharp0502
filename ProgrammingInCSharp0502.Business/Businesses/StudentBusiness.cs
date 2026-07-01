@@ -1,8 +1,7 @@
 ﻿using Newtonsoft.Json;
-using ProgrammingInCSharp0502.MyWindowsformApp.Models;
+using ProgrammingInCSharp0502.Domain;
 
-
-namespace ProgrammingInCSharp0502.MyWindowsformApp.Businesses;
+namespace ProgrammingInCSharp0502.Business;
 
 public class StudentBusiness
 {

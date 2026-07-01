@@ -1,6 +1,4 @@
-﻿using ProgrammingInCSharp0502.MyWindowsformApp.Enums;
-
-namespace ProgrammingInCSharp0502.MyWindowsformApp.Models;
+﻿namespace ProgrammingInCSharp0502.Domain;
 
 public class StudentCourseHistory
 {
