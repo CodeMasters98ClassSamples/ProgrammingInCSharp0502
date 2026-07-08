@@ -123,3 +123,10 @@ Visualization
 
 Forms:
 	Presentation
+
+
+Class => User Defined DataType
+
+Delete
+	=> فیزیکی
+	=> منطقی

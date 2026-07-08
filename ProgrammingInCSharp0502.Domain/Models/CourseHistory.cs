@@ -1,6 +1,8 @@
-﻿namespace ProgrammingInCSharp0502.Domain;
+﻿using ProgrammingInCSharp0502.Domain.Contracts;
 
-public class CourseHistory
+namespace ProgrammingInCSharp0502.Domain;
+
+public class CourseHistory : IEntity<int>, ICreatableEntity
 {
     public int Id { get; set; }
     public string Title { get; set; }
@@ -11,5 +13,5 @@ public class CourseHistory
     public CourseType Type { get; set; }
     public Course Course { get; set; }
     public Master Master { get; set; }
-
+    public DateTime CreatedAt { get; set; }
 }

@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using ProgrammingInCSharp0502.Domain.Contracts;
 using System.Diagnostics;
 
 namespace ProgrammingInCSharp0502.Domain;
@@ -6,8 +7,13 @@ namespace ProgrammingInCSharp0502.Domain;
 //rich domain VS anemic domain
 
 [DebuggerDisplay("Student {Id}: {FirstName} {LastName} with Code= {Code} .")]
-public class Student
+public class Student : IFullEntity<long>
 {
+    void TestAccess()
+    {
+
+    }
+
     public Student() { }
 
     //public Student(string firstName, string lastName, string nationalCode, string phone)
@@ -33,7 +39,7 @@ public class Student
     //}
 
     //auto generated
-    public int Id { get; set; }
+    public long Id { get; set; }
 
     [JsonProperty]
     public string FirstName { get; private set; }
@@ -44,6 +50,9 @@ public class Student
     [JsonProperty]
     public string Phone { get; private set; }
     public string NationalCode { get; private set; }
+    public DateTime CreatedAt { get; set; }
+    public bool IsDeleted { get; set; }
+    public DateTime DeletedAt { get; set; }
     public string FullName { get {
             return FirstName + " " + LastName;    
         } 
@@ -63,6 +72,7 @@ public class Student
 
     public void UpdateLastName(string lastName)
     {
+        TestAccess();
         if (string.IsNullOrEmpty(lastName) || lastName.Length <= 2)
             throw new Exception(message: "نام را درست وارد نمایید.");
 

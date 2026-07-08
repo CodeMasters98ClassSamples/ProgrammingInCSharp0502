@@ -1,11 +1,13 @@
-﻿namespace ProgrammingInCSharp0502.Domain;
+﻿using ProgrammingInCSharp0502.Domain.Contracts;
 
-public class StudentCourseHistory
+namespace ProgrammingInCSharp0502.Domain;
+
+public class StudentCourseHistory : IEntity<long>, ICreatableEntity
 {
-    public int Id { get; set; }
+    public long Id { get; set; }
     public Student Student { get; set; }
     public CourseHistory CourseHistory { get; set; }
     public PaymentType PaymentType { get; set; }
     public DateTime RegisterDate { get; set; }
-
+    public DateTime CreatedAt { get; set; }
 }
