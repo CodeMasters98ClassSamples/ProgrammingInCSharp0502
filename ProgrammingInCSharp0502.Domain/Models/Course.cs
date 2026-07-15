@@ -3,7 +3,7 @@
 namespace ProgrammingInCSharp0502.Domain;
 public class Course : IFullEntity<short>
 {
-    public short Id { get; set; }
+    public short Id { get; set; } //PK
     public string Title { get; set; }
     public string Description { get; set; }
     public decimal Price { get; set; }

@@ -11,7 +11,12 @@ public class CourseHistory : IEntity<int>, ICreatableEntity
     public DateTime StartAt { get; set; }
     public DateTime EndAt { get; set; }
     public CourseType Type { get; set; }
+    
     public Course Course { get; set; }
+    public short CourseId { get; set; }
+
     public Master Master { get; set; }
+    public short MasterId { get; set; }
+
     public DateTime CreatedAt { get; set; }
 }

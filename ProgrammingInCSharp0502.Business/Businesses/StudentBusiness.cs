@@ -11,8 +11,6 @@ public class StudentBusiness
         //return new List<Student>();
         List<Student> students = new();
 
-        Student student = new Student();
-        student.
         string jsonDataStr = string.Empty;
         string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Data", "StudentsData.json");
         if (File.Exists(filePath))

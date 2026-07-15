@@ -10,10 +10,11 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{43A36766-4F50-4D80-B917-BD0A6A201F30}"
 	ProjectSection(SolutionItems) = preProject
 		DomainSpecification.txt = DomainSpecification.txt
+		MyQuery.sql = MyQuery.sql
 		..\..\..\Desktop\Ntier.PNG = ..\..\..\Desktop\Ntier.PNG
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProgrammingInCSharp0502.MyAPIApp", "ProgrammingInCSharp0502.MyAPIApp\ProgrammingInCSharp0502.MyAPIApp.csproj", "{81CCD07C-CFFB-47C4-A37F-BC812D987E94}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProgrammingInCSharp0502.MyAPIApp", "ProgrammingInCSharp0502.MyAPIApp\ProgrammingInCSharp0502.MyAPIApp.csproj", "{81CCD07C-CFFB-47C4-A37F-BC812D987E94}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PresentationLayer", "PresentationLayer", "{420FF2F2-8072-4DCA-BD9F-87065AEF95D7}"
 EndProject
@@ -23,11 +24,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataAccessLayer", "DataAcce
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DomainLayer", "DomainLayer", "{F2CF3024-0E44-442B-8B52-88FAEE6BDD5D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProgrammingInCSharp0502.Business", "ProgrammingInCSharp0502.Business\ProgrammingInCSharp0502.Business.csproj", "{990A8755-EA8B-4058-A018-16DB0502FC5B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProgrammingInCSharp0502.Business", "ProgrammingInCSharp0502.Business\ProgrammingInCSharp0502.Business.csproj", "{990A8755-EA8B-4058-A018-16DB0502FC5B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProgrammingInCSharp0502.DAL", "ProgrammingInCSharp0502.DAL\ProgrammingInCSharp0502.DAL.csproj", "{AB77566E-D0C3-4CBA-B35C-AD7F92B321C8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProgrammingInCSharp0502.DAL", "ProgrammingInCSharp0502.DAL\ProgrammingInCSharp0502.DAL.csproj", "{AB77566E-D0C3-4CBA-B35C-AD7F92B321C8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProgrammingInCSharp0502.Domain", "ProgrammingInCSharp0502.Domain\ProgrammingInCSharp0502.Domain.csproj", "{4DE06C3E-061B-450D-BFFF-35BDD30E2DC8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProgrammingInCSharp0502.Domain", "ProgrammingInCSharp0502.Domain\ProgrammingInCSharp0502.Domain.csproj", "{4DE06C3E-061B-450D-BFFF-35BDD30E2DC8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
