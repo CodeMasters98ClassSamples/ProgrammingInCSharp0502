@@ -1,27 +1,83 @@
 ﻿using Newtonsoft.Json;
+using ProgrammingInCSharp0502.Business.Interfaces;
 using ProgrammingInCSharp0502.Domain;
+using System;
+using System.Data.SqlClient;
 
 namespace ProgrammingInCSharp0502.Business;
 
-public class StudentBusiness
+public class StudentBusiness : IStudentBusiness
 {
-    public List<Student> GetStudents()
-    {
-        //From Object
-        //return new List<Student>();
-        List<Student> students = new();
+    string connectionString = "Data Source=.;Initial Catalog=ProgrammingInCSharp0502Db;Integrated Security=True;";
 
-        string jsonDataStr = string.Empty;
-        string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Data", "StudentsData.json");
-        if (File.Exists(filePath))
+    //Database First -> Connection , 
+    //Commands -> Insert , update , delete
+    //Query -> Select (Sort, Pagination)
+    public List<Student> GetAll()
+    {
+        List<Student> studnets = new List<Student>();
+        try
         {
-            jsonDataStr = File.ReadAllText(filePath);
-            if (!string.IsNullOrEmpty(jsonDataStr))
+            using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                students = JsonConvert.DeserializeObject<List<Student>>(jsonDataStr);
-         
+                //Connection
+                connection.Open();
+
+                //Query
+                string query = $"SELECT * FROM dbo.Student ORDER BY CreatedAt DESC";
+                SqlCommand command = new SqlCommand(query, connection);
+
+                // Create a data reader to fetch the data
+                SqlDataReader reader = command.ExecuteReader();
+
+                // Read data and map it to Person objects
+                while (reader.Read())
+                {
+                    Student student = new Student(
+                        id: (long)reader["Id"],
+                        firstName: reader["FirstName"].ToString(),
+                        lastName: reader["LastName"].ToString(),
+                        phone: reader["Phone"].ToString(),
+                        nationalCode: reader["NationalCode"].ToString(),
+                        code: reader["Code"].ToString());
+
+                    studnets.Add(student);
+                }
             }
         }
-        return students;
+        catch (Exception ex)
+        {
+            //Log File , Database , ELK
+            throw;
+        }
+        return studnets;
+    }
+
+    public bool Add(Student student)
+    {
+        //CAP -> Network Issue
+        //Sql Server , File , MySql ,..
+
+        return true;
+    }
+
+    public bool Update(Student student)
+    {
+        return true;
+    }
+
+    public bool Delete(Student student)
+    {
+        return true;
+    }
+
+    public Student GetById(int id)
+    {
+        throw new NotImplementedException();
+    }
+
+    public bool Register()
+    {
+        throw new NotImplementedException();
     }
 }

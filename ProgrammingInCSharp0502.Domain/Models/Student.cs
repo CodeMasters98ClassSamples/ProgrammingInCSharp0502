@@ -16,6 +16,16 @@ public class Student : IFullEntity<long>
 
     public Student() { }
 
+    public Student(long id,string firstName, string lastName, string nationalCode, string phone, string code)
+    {
+        Id = id;
+        Code = code;
+        NationalCode = nationalCode;
+        FirstName = firstName;
+        LastName = lastName;
+        Phone = phone;
+    }
+
     //public Student(string firstName, string lastName, string nationalCode, string phone)
     //{
 
@@ -53,13 +63,16 @@ public class Student : IFullEntity<long>
     public DateTime CreatedAt { get; set; }
     public bool IsDeleted { get; set; }
     public DateTime DeletedAt { get; set; }
-    public string FullName { get {
-            return FirstName + " " + LastName;    
-        } 
+    public string FullName
+    {
+        get
+        {
+            return FirstName + " " + LastName;
+        }
     }
 
     //auto generated
-    public string Code { get; set; }    
+    public string Code { get; set; }
     public Address Address { get; set; }
 
     public void UpdateFirstName(string firstName)
@@ -94,13 +107,9 @@ public class Student : IFullEntity<long>
         if (string.IsNullOrEmpty(phone) || phone.Length != 11)
             throw new Exception(message: "شماره همراه را درست وارد نمایید.");
 
-        //var rnd = new Random();
-        //var rndId = rnd.Next(100, 10000);
-
         return new Student
         {
-            Id = new Random().Next(100, 10000),
-            Code = Guid.NewGuid().ToString().Substring(0,10),
+            Code = Guid.NewGuid().ToString().Substring(0, 10),
             NationalCode = nationalCode,
             FirstName = firstName,
             LastName = lastName,

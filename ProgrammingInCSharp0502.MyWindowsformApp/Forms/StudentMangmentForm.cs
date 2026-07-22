@@ -24,7 +24,7 @@ namespace ProgrammingInCSharp0502.MyWindowsformApp
         {
             InitializeComponent();
 
-            students = studentBusiness.GetStudents();
+            students = studentBusiness.GetAll();
 
             RefreshForm();
             ResetForm();

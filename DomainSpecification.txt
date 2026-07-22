@@ -130,3 +130,21 @@ Class => User Defined DataType
 Delete
 	=> فیزیکی
 	=> منطقی
+
+
+	//Sql -> Connection , Command , ..
+        //From Object
+        //return new List<Student>();
+        List<Student> students = new();
+        string jsonDataStr = string.Empty;
+        string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Data", "StudentsData.json");
+        if (File.Exists(filePath))
+        {
+            jsonDataStr = File.ReadAllText(filePath);
+            if (!string.IsNullOrEmpty(jsonDataStr))
+            {
+                students = JsonConvert.DeserializeObject<List<Student>>(jsonDataStr);
+         
+            }
+        }
+        return students;
