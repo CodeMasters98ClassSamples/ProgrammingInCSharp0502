@@ -1,13 +1,14 @@
 ﻿using Newtonsoft.Json;
 using ProgrammingInCSharp0502.Domain.Contracts;
 using System.Diagnostics;
+using System.Linq.Expressions;
 
 namespace ProgrammingInCSharp0502.Domain;
 
 //rich domain VS anemic domain
 
 [DebuggerDisplay("Student {Id}: {FirstName} {LastName} with Code= {Code} .")]
-public class Student : IFullEntity<long>
+public class Student : IFullEntity<long>, IDisposable
 {
     void TestAccess()
     {
@@ -18,6 +19,11 @@ public class Student : IFullEntity<long>
 
     public Student(long id,string firstName, string lastName, string nationalCode, string phone, string code)
     {
+        if (string.IsNullOrEmpty(firstName))
+        {
+            throw new Exception();
+        }
+
         Id = id;
         Code = code;
         NationalCode = nationalCode;
@@ -75,6 +81,12 @@ public class Student : IFullEntity<long>
     public string Code { get; set; }
     public Address Address { get; set; }
 
+    public Student AddAddress(Address address)
+    {
+        Address = address;
+        return this;
+    }
+
     public void UpdateFirstName(string firstName)
     {
         if (string.IsNullOrEmpty(firstName) || firstName.Length <= 2)
@@ -117,5 +129,8 @@ public class Student : IFullEntity<long>
         };
     }
 
-
+    public void Dispose()
+    {
+        throw new NotImplementedException();
+    }
 }

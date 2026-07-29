@@ -1,4 +1,5 @@
-﻿using ProgrammingInCSharp0502.Business;
+﻿using Microsoft.VisualBasic.ApplicationServices;
+using ProgrammingInCSharp0502.Business;
 using ProgrammingInCSharp0502.Domain;
 using ProgrammingInCSharp0502.MyWindowsformApp.Forms;
 
@@ -20,15 +21,37 @@ namespace ProgrammingInCSharp0502.MyWindowsformApp
         Student targetStudent = null;
         StudentBusiness studentBusiness = new();
 
+        //Declare delegate
+        //[access modifier] delegate [return type] [delegate name]([parameters])
+        public delegate void ReloadData(List<Student> myUsers);
+
+        // Declare the event.
+        public event ReloadData ReloadDataEvent;
+
+
         public StudentMangmentForm()
         {
             InitializeComponent();
 
-            students = studentBusiness.GetAll();
+            ReloadDataEvent += FillDataGrid;
+            ReloadDataEvent.Invoke(studentBusiness.GetAll());
 
             RefreshForm();
             ResetForm();
         }
+
+        private void FillDataGrid(List<Student> students)
+        {
+            studentDataGridView.DataSource = null;
+            studentDataGridView.DataSource = students;
+            studentDataGridView.Refresh();
+
+            ResetForm();
+
+            MessageBox.Show("Record Updated successfully");
+
+        }
+
 
         private void registerStudentButton_Click(object sender, EventArgs e)
         {
@@ -42,7 +65,7 @@ namespace ProgrammingInCSharp0502.MyWindowsformApp
                     nationalCode: nationalCodeTextBox.Text,
                     phone: phonNumberTextBox.Text);
 
-                students.Add(s);
+                studentBusiness.Add(s);
                 RefreshForm();
                 ResetForm();
             }
@@ -92,9 +115,7 @@ namespace ProgrammingInCSharp0502.MyWindowsformApp
 
         private void RefreshForm()
         {
-            studentDataGridView.DataSource = null;
-            studentDataGridView.Refresh();
-            studentDataGridView.DataSource = students;
+            ReloadDataEvent.Invoke(studentBusiness.GetAll());
         }
 
         private void updateIdentityButton_Click(object sender, EventArgs e)

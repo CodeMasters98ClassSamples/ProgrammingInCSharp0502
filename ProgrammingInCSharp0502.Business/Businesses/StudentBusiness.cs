@@ -8,6 +8,9 @@ namespace ProgrammingInCSharp0502.Business;
 
 public class StudentBusiness : IStudentBusiness
 {
+    //1. Config -> AppSettings.json , Web.Config , App.Config
+    //2. Connection with database -> How many , scale ?
+    //3. Next session -> Another way to connect db , EF , Delegate and Event
     string connectionString = "Data Source=.;Initial Catalog=ProgrammingInCSharp0502Db;Integrated Security=True;";
 
     //Database First -> Connection , 
@@ -24,11 +27,13 @@ public class StudentBusiness : IStudentBusiness
                 connection.Open();
 
                 //Query
-                string query = $"SELECT * FROM dbo.Student ORDER BY CreatedAt DESC";
+                string query = $"SELECT * FROM dbo.Student WHERE IsDeleted = 0 ORDER BY CreatedAt DESC";
                 SqlCommand command = new SqlCommand(query, connection);
 
                 // Create a data reader to fetch the data
                 SqlDataReader reader = command.ExecuteReader();
+
+                //ORM -> Object Relational Mapping
 
                 // Read data and map it to Person objects
                 while (reader.Read())
@@ -55,10 +60,41 @@ public class StudentBusiness : IStudentBusiness
 
     public bool Add(Student student)
     {
-        //CAP -> Network Issue
-        //Sql Server , File , MySql ,..
+        using (SqlConnection connection = new SqlConnection(connectionString))
+        {
+            try
+            {
+                //Connection -> Command , Query
+                //Connection
+                connection.Open();
 
-        return true;
+                // Create a SQL command to insert a new person record
+                string query = $"INSERT INTO Student (FirstName, LastName,Phone,NationalCode, Code)" +
+                               "VALUES (@FirstName, @LastName,@Phone,@NationalCode,@Code)";
+                SqlCommand command = new SqlCommand(query, connection);
+
+                // Add parameters to the SQL command
+                command.Parameters.AddWithValue("@FirstName", student.FirstName);
+                command.Parameters.AddWithValue("@LastName", student.LastName);
+                command.Parameters.AddWithValue("@Phone", student.Phone);
+                command.Parameters.AddWithValue("@NationalCode", student.NationalCode);
+                command.Parameters.AddWithValue("@Code", student.Code);
+
+                // Execute the insert query
+                int rowsAffected = command.ExecuteNonQuery();
+
+                return rowsAffected > 0;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
+        
     }
 
     public bool Update(Student student)
