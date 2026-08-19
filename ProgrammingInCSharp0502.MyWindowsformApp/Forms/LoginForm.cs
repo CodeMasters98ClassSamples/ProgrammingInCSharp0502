@@ -45,9 +45,12 @@ namespace ProgrammingInCSharp0502.MyWindowsformApp
             }
 
             //Loop over
-            for (int i = 0; i < logins.Count; i++)
-                if (logins[i].Username.Trim().ToLower() == username.Trim().ToLower() && logins[i].Password.Trim() == password.Trim())
-                    successLogin = true;
+            //for (int i = 0; i < logins.Count; i++)
+            //    if (logins[i].Username.Trim().ToLower() == username.Trim().ToLower() && logins[i].Password.Trim() == password.Trim())
+            //        successLogin = true;
+
+            if (logins.Any(x => x.Username == username.Trim().ToLower() && x.Password == password.Trim()))
+                successLogin = true;
 
             if (successLogin)
             {

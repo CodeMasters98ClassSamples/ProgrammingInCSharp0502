@@ -1,8 +1,11 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
+using ProgrammingInCSharp0502.Business.Data;
 using ProgrammingInCSharp0502.Business.Interfaces;
 using ProgrammingInCSharp0502.Domain;
 using System;
 using System.Data.SqlClient;
+using System.Net.Http.Headers;
 
 namespace ProgrammingInCSharp0502.Business;
 
@@ -18,44 +21,48 @@ public class StudentBusiness : IStudentBusiness
     //Query -> Select (Sort, Pagination)
     public List<Student> GetAll()
     {
-        List<Student> studnets = new List<Student>();
-        try
-        {
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                //Connection
-                connection.Open();
+        CoreDbContext coreDbContext = new CoreDbContext();
+        var students = coreDbContext.Students.ToList();
+        return students;
 
-                //Query
-                string query = $"SELECT * FROM dbo.Student WHERE IsDeleted = 0 ORDER BY CreatedAt DESC";
-                SqlCommand command = new SqlCommand(query, connection);
+        //List<Student> studnets = new List<Student>();
+        //try
+        //{
+        //    using (SqlConnection connection = new SqlConnection(connectionString))
+        //    {
+        //        //Connection
+        //        connection.Open();
 
-                // Create a data reader to fetch the data
-                SqlDataReader reader = command.ExecuteReader();
+        //        //Query
+        //        string query = $"SELECT * FROM dbo.Student WHERE IsDeleted = 0 ORDER BY CreatedAt DESC";
+        //        SqlCommand command = new SqlCommand(query, connection);
 
-                //ORM -> Object Relational Mapping
+        //        // Create a data reader to fetch the data
+        //        SqlDataReader reader = command.ExecuteReader();
 
-                // Read data and map it to Person objects
-                while (reader.Read())
-                {
-                    Student student = new Student(
-                        id: (long)reader["Id"],
-                        firstName: reader["FirstName"].ToString(),
-                        lastName: reader["LastName"].ToString(),
-                        phone: reader["Phone"].ToString(),
-                        nationalCode: reader["NationalCode"].ToString(),
-                        code: reader["Code"].ToString());
+        //        //ORM -> Object Relational Mapping
 
-                    studnets.Add(student);
-                }
-            }
-        }
-        catch (Exception ex)
-        {
-            //Log File , Database , ELK
-            throw;
-        }
-        return studnets;
+        //        // Read data and map it to Person objects
+        //        while (reader.Read())
+        //        {
+        //            Student student = new Student(
+        //                id: (long)reader["Id"],
+        //                firstName: reader["FirstName"].ToString(),
+        //                lastName: reader["LastName"].ToString(),
+        //                phone: reader["Phone"].ToString(),
+        //                nationalCode: reader["NationalCode"].ToString(),
+        //                code: reader["Code"].ToString());
+
+        //            studnets.Add(student);
+        //        }
+        //    }
+        //}
+        //catch (Exception ex)
+        //{
+        //    //Log File , Database , ELK
+        //    throw;
+        //}
+        //return studnets;
     }
 
     public bool Add(Student student)
