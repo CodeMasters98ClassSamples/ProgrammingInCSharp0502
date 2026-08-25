@@ -79,7 +79,7 @@ public class Student : IFullEntity<long>, IDisposable
 
     //auto generated
     public string Code { get; set; }
-    public Address Address { get; set; }
+    public Address? Address { get; set; }
 
     public Student AddAddress(Address address)
     {

@@ -1,13 +1,22 @@
 ﻿using ProgrammingInCSharp0502.Business.Interfaces;
+using ProgrammingInCSharp0502.DataAccess.Data;
 using ProgrammingInCSharp0502.Domain;
 
 namespace ProgrammingInCSharp0502.Business.Businesses;
 
 public class CourseBusiness : IBusiness<Course>
 {
+    private readonly CoreDbContext _coreDbContext;
+
+    public CourseBusiness(CoreDbContext coreDbContext)
+    {
+        _coreDbContext = coreDbContext;
+    }
     public bool Add(Course item)
     {
-        throw new NotImplementedException();
+        _coreDbContext.Courses.Add(item);
+        int rowsAffected = _coreDbContext.SaveChanges();
+        return rowsAffected > 0;
     }
 
     public bool Delete(Course item)
@@ -17,7 +26,7 @@ public class CourseBusiness : IBusiness<Course>
 
     public List<Course> GetAll()
     {
-        throw new NotImplementedException();
+        return _coreDbContext.Courses.ToList();
     }
 
     public Course GetById(int id)
