@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualBasic.ApplicationServices;
 using ProgrammingInCSharp0502.Business;
+using ProgrammingInCSharp0502.Business.Businesses;
 using ProgrammingInCSharp0502.Domain;
 using ProgrammingInCSharp0502.MyWindowsformApp.Forms;
 
@@ -7,31 +8,22 @@ namespace ProgrammingInCSharp0502.MyWindowsformApp
 {
     public partial class StudentMangmentForm : Form
     {
-        //Global Vaibale
-        // Hold Data => File (csv, json, xml , txt, ..) , Database (SQL , NoSQL) => Sql server, MySql , Mongo
-        // Collection => Array , List , Dic
-        // Data Application => Database , Cache , Queue
-
-        // Garbage Collector => 12
-        // Files => 15
-
-        //Pattern -> Resuing Code
-
         List<Student> students = new List<Student>();
         Student targetStudent = null;
-        StudentBusiness studentBusiness = new();
 
-        //Declare delegate
-        //[access modifier] delegate [return type] [delegate name]([parameters])
+        private readonly StudentBusiness _studentBusiness;
+
+
         public delegate void ReloadData(List<Student> myUsers);
 
-        // Declare the event.
+
         public event ReloadData ReloadDataEvent;
 
 
-        public StudentMangmentForm()
+        public StudentMangmentForm(StudentBusiness studentBusiness)
         {
             InitializeComponent();
+            _studentBusiness = studentBusiness;
 
             ReloadDataEvent += FillDataGrid;
             ReloadDataEvent.Invoke(studentBusiness.GetAll());
@@ -65,7 +57,7 @@ namespace ProgrammingInCSharp0502.MyWindowsformApp
                     nationalCode: nationalCodeTextBox.Text,
                     phone: phonNumberTextBox.Text);
 
-                studentBusiness.Add(s);
+                _studentBusiness.Add(s);
                 RefreshForm();
                 ResetForm();
             }
@@ -115,7 +107,7 @@ namespace ProgrammingInCSharp0502.MyWindowsformApp
 
         private void RefreshForm()
         {
-            ReloadDataEvent.Invoke(studentBusiness.GetAll());
+            ReloadDataEvent.Invoke(_studentBusiness.GetAll());
         }
 
         private void updateIdentityButton_Click(object sender, EventArgs e)
