@@ -1,5 +1,4 @@
-﻿using Microsoft.VisualBasic.ApplicationServices;
-using ProgrammingInCSharp0502.Business;
+using ProgrammingInCSharp0502.Business.Interfaces;
 using ProgrammingInCSharp0502.Domain;
 using ProgrammingInCSharp0502.MyWindowsformApp.Forms;
 
@@ -7,19 +6,9 @@ namespace ProgrammingInCSharp0502.MyWindowsformApp
 {
     public partial class StudentMangmentForm : Form
     {
-        //Global Vaibale
-        // Hold Data => File (csv, json, xml , txt, ..) , Database (SQL , NoSQL) => Sql server, MySql , Mongo
-        // Collection => Array , List , Dic
-        // Data Application => Database , Cache , Queue
-
-        // Garbage Collector => 12
-        // Files => 15
-
-        //Pattern -> Resuing Code
-
-        List<Student> students = new List<Student>();
-        Student targetStudent = null;
-        StudentBusiness studentBusiness = new();
+        //Presentation layer:
+        //data access goes through the business layer only (IStudentBusiness),
+        //which is injected by the DI container (Database-First -> EF InMemory)
 
         //Declare delegate
         //[access modifier] delegate [return type] [delegate name]([parameters])
@@ -28,52 +17,64 @@ namespace ProgrammingInCSharp0502.MyWindowsformApp
         // Declare the event.
         public event ReloadData ReloadDataEvent;
 
+        private readonly IStudentBusiness _studentBusiness;
+        private List<Student> students = new List<Student>();
+        private Student targetStudent;
 
-        public StudentMangmentForm()
+        public StudentMangmentForm(IStudentBusiness studentBusiness)
         {
+            _studentBusiness = studentBusiness;
+
             InitializeComponent();
 
             ReloadDataEvent += FillDataGrid;
-            ReloadDataEvent.Invoke(studentBusiness.GetAll());
+            ReloadDataEvent.Invoke(_studentBusiness.GetAll());
 
-            RefreshForm();
             ResetForm();
+
+            var x = new Student();
         }
 
         private void FillDataGrid(List<Student> students)
         {
+            //Keep the loaded list so a row click can find the target student
+            this.students = students;
+
             studentDataGridView.DataSource = null;
             studentDataGridView.DataSource = students;
             studentDataGridView.Refresh();
 
             ResetForm();
-
-            MessageBox.Show("Record Updated successfully");
-
         }
 
+        private void RefreshForm()
+        {
+            ReloadDataEvent.Invoke(_studentBusiness.GetAll());
+        }
+
+        private void ResetForm()
+        {
+            targetStudent = null;
+            firstNameTextBox.Text = null;
+            lastNameTextBox.Text = null;
+        }
 
         private void registerStudentButton_Click(object sender, EventArgs e)
         {
             try
             {
-                //Student student = new Student(firstName: firstNameTextBox.Text, lastName: lastNameTextBox.Text, nationalCode: nationalCodeTextBox.Text, phone: phonNumberTextBox.Text);
-                //student.RegisterUser(firstName: firstNameTextBox.Text, lastName: lastNameTextBox.Text, nationalCode: nationalCodeTextBox.Text, phone: phonNumberTextBox.Text);
-                //Student student = new Student();
                 Student s = Student.RegisterUser(firstName: firstNameTextBox.Text,
                     lastName: lastNameTextBox.Text,
                     nationalCode: nationalCodeTextBox.Text,
                     phone: phonNumberTextBox.Text);
 
-                studentBusiness.Add(s);
+                _studentBusiness.Add(s);
                 RefreshForm();
-                ResetForm();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "خطا");
             }
-
         }
 
         private void studentDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -83,51 +84,50 @@ namespace ProgrammingInCSharp0502.MyWindowsformApp
             {
                 // Get the current row
                 var row = studentDataGridView.Rows[e.RowIndex];
-
-                // Access the ID from the row's data
-                var id = int.Parse(row.Cells["Id"].Value.ToString() ?? "0");
-                var code = row.Cells["Code"].Value;
+                var code = row.Cells["Code"].Value?.ToString();
 
                 Clipboard.SetDataObject(code);
 
-                //targetStudent = students
+                targetStudent = students.FirstOrDefault(s => s.Code == code);
+                if (targetStudent is null)
+                    return;
 
-                for (int i = 0; i < students.Count; i++)
-                {
-                    if (students[i].Code == code)
-                    {
-                        targetStudent = students[i];
-                        firstNameTextBox.Text = targetStudent.FirstName;
-                        lastNameTextBox.Text = targetStudent.LastName;
-                    }
-                }
-
-                // Display or use the ID
-                MessageBox.Show($"Row ID: {id} & Code {code} Copied!");
+                firstNameTextBox.Text = targetStudent.FirstName;
+                lastNameTextBox.Text = targetStudent.LastName;
             }
-        }
-
-        private void ResetForm()
-        {
-            firstNameTextBox.Text = null;
-            lastNameTextBox.Text = null;
-        }
-
-        private void RefreshForm()
-        {
-            ReloadDataEvent.Invoke(studentBusiness.GetAll());
         }
 
         private void updateIdentityButton_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(targetStudent.FirstName))
+            if (targetStudent is null)
             {
-                MessageBox.Show("لطفا ابتدا شخصی را انتخاب نمایید.");
+                MessageBox.Show("لطفا ابتدا دانشجویی را انتخاب نمایید.");
                 return;
             }
 
-            targetStudent.UpdateFirstName(firstNameTextBox.Text);
-            targetStudent.UpdateLastName(lastNameTextBox.Text);
+            try
+            {
+                targetStudent.UpdateFirstName(firstNameTextBox.Text);
+                targetStudent.UpdateLastName(lastNameTextBox.Text);
+
+                _studentBusiness.Update(targetStudent);
+                RefreshForm();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "خطا");
+            }
+        }
+
+        private void deleteStudentButton_Click(object sender, EventArgs e)
+        {
+            if (targetStudent is null)
+            {
+                MessageBox.Show("لطفا ابتدا دانشجویی را انتخاب نمایید.");
+                return;
+            }
+
+            _studentBusiness.Delete(targetStudent);
             RefreshForm();
         }
 
@@ -139,9 +139,8 @@ namespace ProgrammingInCSharp0502.MyWindowsformApp
                 return;
             }
 
-            RegisterStudentOnCourseForm regForm = new(fullname: targetStudent.FullName ,code: targetStudent.Code);
+            RegisterStudentOnCourseForm regForm = new(fullname: targetStudent.FullName, code: targetStudent.Code);
             regForm.Show();
-
         }
     }
 }

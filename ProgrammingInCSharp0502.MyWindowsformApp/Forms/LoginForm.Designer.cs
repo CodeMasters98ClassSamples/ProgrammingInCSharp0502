@@ -33,6 +33,7 @@
             label1 = new Label();
             label2 = new Label();
             lgonButton = new Button();
+            dbStatusLabel = new Label();
             SuspendLayout();
             // 
             // userNameTextBox
@@ -76,12 +77,23 @@
             lgonButton.Text = "ورود";
             lgonButton.UseVisualStyleBackColor = true;
             lgonButton.Click += lgonButton_Click;
-            // 
+            //
+            // dbStatusLabel
+            //
+            dbStatusLabel.Location = new Point(16, 150);
+            dbStatusLabel.Name = "dbStatusLabel";
+            dbStatusLabel.Size = new Size(237, 18);
+            dbStatusLabel.TabIndex = 5;
+            dbStatusLabel.Text = "در حال بررسی اتصال دیتابیس ...";
+            dbStatusLabel.ForeColor = Color.Orange;
+            dbStatusLabel.TextAlign = ContentAlignment.MiddleCenter;
+            //
             // LoginForm
-            // 
+            //
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(269, 158);
+            ClientSize = new Size(269, 185);
+            Controls.Add(dbStatusLabel);
             Controls.Add(lgonButton);
             Controls.Add(label2);
             Controls.Add(label1);
@@ -100,5 +112,6 @@
         private Label label1;
         private Label label2;
         private Button lgonButton;
+        private Label dbStatusLabel;
     }
 }

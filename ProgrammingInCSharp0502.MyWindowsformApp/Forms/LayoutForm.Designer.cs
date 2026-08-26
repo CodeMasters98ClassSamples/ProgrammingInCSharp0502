@@ -31,12 +31,13 @@
             menuStrip1 = new MenuStrip();
             مدیریتدانشجویانToolStripMenuItem = new ToolStripMenuItem();
             ثبتنامToolStripMenuItem = new ToolStripMenuItem();
+            مدیریتدورههاToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // menuStrip1
             // 
-            menuStrip1.Items.AddRange(new ToolStripItem[] { مدیریتدانشجویانToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { مدیریتدانشجویانToolStripMenuItem, مدیریتدورههاToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(800, 24);
@@ -57,9 +58,16 @@
             ثبتنامToolStripMenuItem.Size = new Size(180, 22);
             ثبتنامToolStripMenuItem.Text = "ثبت نام";
             ثبتنامToolStripMenuItem.Click += ثبتنامToolStripMenuItem_Click;
-            // 
+            //
+            // مدیریتدورههاToolStripMenuItem
+            //
+            مدیریتدورههاToolStripMenuItem.Name = "مدیریتدورههاToolStripMenuItem";
+            مدیریتدورههاToolStripMenuItem.Size = new Size(112, 20);
+            مدیریتدورههاToolStripMenuItem.Text = "مدیریت دوره ها";
+            مدیریتدورههاToolStripMenuItem.Click += مدیریتدورههاToolStripMenuItem_Click;
+            //
             // LayoutForm
-            // 
+            //
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
@@ -78,5 +86,6 @@
         private MenuStrip menuStrip1;
         private ToolStripMenuItem مدیریتدانشجویانToolStripMenuItem;
         private ToolStripMenuItem ثبتنامToolStripMenuItem;
+        private ToolStripMenuItem مدیریتدورههاToolStripMenuItem;
     }
 }

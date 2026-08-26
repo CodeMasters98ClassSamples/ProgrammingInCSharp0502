@@ -39,6 +39,7 @@
             lastNameTextBox = new TextBox();
             studentDataGridView = new DataGridView();
             updateIdentityButton = new Button();
+            deleteStudentButton = new Button();
             registerOnCoursebutton = new Button();
             ((System.ComponentModel.ISupportInitialize)studentDataGridView).BeginInit();
             SuspendLayout();
@@ -137,10 +138,20 @@
             updateIdentityButton.Text = "ویرایش اطلاعات هویتی";
             updateIdentityButton.UseVisualStyleBackColor = true;
             updateIdentityButton.Click += updateIdentityButton_Click;
-            // 
+            //
+            // deleteStudentButton
+            //
+            deleteStudentButton.Location = new Point(40, 255);
+            deleteStudentButton.Name = "deleteStudentButton";
+            deleteStudentButton.Size = new Size(231, 39);
+            deleteStudentButton.TabIndex = 12;
+            deleteStudentButton.Text = "حذف دانشجو";
+            deleteStudentButton.UseVisualStyleBackColor = true;
+            deleteStudentButton.Click += deleteStudentButton_Click;
+            //
             // registerOnCoursebutton
-            // 
-            registerOnCoursebutton.Location = new Point(40, 255);
+            //
+            registerOnCoursebutton.Location = new Point(40, 300);
             registerOnCoursebutton.Name = "registerOnCoursebutton";
             registerOnCoursebutton.Size = new Size(231, 39);
             registerOnCoursebutton.TabIndex = 11;
@@ -153,6 +164,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(deleteStudentButton);
             Controls.Add(registerOnCoursebutton);
             Controls.Add(updateIdentityButton);
             Controls.Add(studentDataGridView);
@@ -185,6 +197,7 @@
         private TextBox lastNameTextBox;
         private DataGridView studentDataGridView;
         private Button updateIdentityButton;
+        private Button deleteStudentButton;
         private Button registerOnCoursebutton;
     }
 }

@@ -2,7 +2,6 @@
 
 namespace ProgrammingInCSharp0502.Business.Interfaces;
 
-public interface IStudentBusiness : IBusiness<Student>
+public interface ICourseBusiness : IBusiness<Course>
 {
-    bool Register();
 }
